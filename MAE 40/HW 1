@@ -1,1 +1,18 @@
 % This is the matlab code for the HW 1 for MAE 40 SS2 2021
+
+% script RR_Wheatstone_Inductors
+% The code computes the currents and intermediate nodal voltages of a Wheatstone Bridge and the two inductors L2 and L5.
+% This code is written by Yau Ching Yun
+
+% The numerical of the resistor will be the same as the example problem
+
+syms L5 L2 s V0; R1=1e3; R4=1e3; R3=1e5;
+A=[1 -1 -1 0 0 0 0 0; 0 1 0 -1 -1 0 0 0; 0 0 1 1 0 -1 0 0; 0 R1 0 0 0 0 1 0; ...
+   0 0 L2*s 0 0 0 0 1; 0 0 0 R3 0 0 -1 1; 0 0 0 0 R4 0 -1 0; 0 0 0 0 0 -L5*s 0 1];
+b=[0; 0; 0; V0; V0; 0; 0; 0]; 
+
+x=A\b
+
+
+fprintf('Hence, the expression of the I_3 is given as\n\n')
+disp(x(3))
